@@ -9,7 +9,7 @@ module Janky
 
       def create(nwo, secret, url)
         request = Net::HTTP::Post.new(build_path("repos/#{nwo}/hooks"))
-        payload = build_payload(url, secret)
+        payload = build_payload("#{url}?nwo=#{nwo}", secret)
         request.body = Yajl.dump(payload)
         request.basic_auth(@user, @password)
 
